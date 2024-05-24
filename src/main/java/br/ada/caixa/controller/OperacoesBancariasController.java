@@ -7,6 +7,8 @@ import br.ada.caixa.dto.request.TransferenciaRequestDto;
 import br.ada.caixa.dto.response.SaldoResponseDto;
 import br.ada.caixa.service.operacoesbancarias.deposito.DepositoService;
 import br.ada.caixa.service.operacoesbancarias.saldo.SaldoService;
+import br.ada.caixa.service.operacoesbancarias.saque.SaqueService;
+import br.ada.caixa.service.operacoesbancarias.transferencia.TransferenciaService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,11 +26,13 @@ public class OperacoesBancariasController {
     @PostMapping("/saque")
     public void sacar(@RequestBody SaqueRequestDto saqueRequestDto) {
         System.out.println(saqueRequestDto);
+        SaqueService.sacar(Long.valueOf(saqueRequestDto.getNumeroConta()), saqueRequestDto.getValor());
     }
 
     @PostMapping("/transferencia")
     public void transferencia(@RequestBody TransferenciaRequestDto transferenciaRequestDto) {
         System.out.println(transferenciaRequestDto);
+        TransferenciaService.transferir(Long.valueOf(transferenciaRequestDto.getNumeroContaOrigem()), Long.valueOf(transferenciaRequestDto.getNumeroContaDestino()), transferenciaRequestDto.getValor());
     }
 
     @GetMapping("/saldo/{numeroConta}")

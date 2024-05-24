@@ -6,6 +6,6 @@ import java.math.BigDecimal;
 
 public interface OperacaoSaque {
 
-    void êxecutar(Conta conta, BigDecimal valorSaque);
+    void executar(Conta conta, BigDecimal valorSaque);
 
 }

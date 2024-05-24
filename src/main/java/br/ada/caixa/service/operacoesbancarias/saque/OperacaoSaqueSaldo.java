@@ -9,12 +9,14 @@ import java.math.BigDecimal;
 
 @Order(1)
 @Service
-public class OperacaoSaqueSaldoPF implements OperacaoSaque {
+public class OperacaoSaqueSaldo implements OperacaoSaque {
 
     @Override
-    public void êxecutar(Conta conta, BigDecimal valorSaque) {
+    public void executar(Conta conta, BigDecimal valorSaque) {
         if (valorSaque.compareTo(conta.getSaldo()) > 0) {
             throw new ValidacaoException("Saldo insuficiente!");
+        } else{
+            conta.setSaldo(conta.getSaldo().subtract(valorSaque));
         }
     }
 
